@@ -1,6 +1,6 @@
 'use strict'
 
-class BinaryTree { 
+class BinaryTree {
 	constructor(value) {
 		this.value = value
 		this.left = null

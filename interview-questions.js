@@ -65,7 +65,7 @@ let eggDrop = (array, value, eggs, start, end, attempts) => {
   } else if (start < value) {
     return eggDrop(array, value, eggs, start + 1, end, attempts)
   }
-    
+
 }
 
 let testArray = []
@@ -80,3 +80,35 @@ console.log(eggDrop(testArray))
 
    /* Imagine you are looking for a book in a library with a Dewey Decimal index.
    How would you go about it? Can you express this process as a searching algorithm? */
+
+function deweyDecimal(decimal) {
+  dewey = [000, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  category = Math.floor(decimal / 100);
+  for (let i = 0; i < dewey.length; i++) {
+    if (category === (dewey[i] / 100)) {
+      return i;
+    }
+  }
+}
+
+let binarySearch = (array, value, start, end) => {
+  let deweyIndex = '';
+  let stringIndex = 0;
+	start = start || 0
+	end = end || array.length
+
+// picking index in the middle of the start and end indices; if you haven't found the item, recursively search in either left or right half.
+	let index = Math.floor((start + end) / 2)
+	let item = array[index]
+  if (item == value[stringIndex]) {
+    stringIndex++;
+		deweyIndex.concat(item.toString());
+	} else if (item < value) {
+		return binarySearch(array, value, index + 1, end)
+	} else if (item > value) {
+		return binarySearch(array, value, start, index - 1)
+	}
+}
+
+array = [0,1,2,3,4,5,6,7,8,9]
+console.log(binarySearch(array, '338476772109'));
