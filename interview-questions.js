@@ -76,13 +76,13 @@ let createArr = (array) => {
 }
 createArr(testArray)
 
-console.log(eggDrop(testArray))
+// console.log(eggDrop(testArray))
 
    /* Imagine you are looking for a book in a library with a Dewey Decimal index.
    How would you go about it? Can you express this process as a searching algorithm? */
 
 function deweyDecimal(decimal) {
-  dewey = [000, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  library = {000: {00: [ 'a-book', 'b-book', 'c-book'], 10: [ 'a-book', 'b-book', 'c-book'], 20: [ 'a-book', 'b-book', 'c-book']}, 100: {00: {0: [ 'a-book', 'b-book', 'c-book'], 10: [ 'a-book', 'b-book', 'c-book'], 20: [ 'a-book', 'b-book', 'c-book']}};
   category = Math.floor(decimal / 100);
   for (let i = 0; i < dewey.length; i++) {
     if (category === (dewey[i] / 100)) {
@@ -91,24 +91,25 @@ function deweyDecimal(decimal) {
   }
 }
 
-let binarySearch = (array, value, start, end) => {
-  let deweyIndex = '';
-  let stringIndex = 0;
-	start = start || 0
-	end = end || array.length
+// let deweySearch = (array, value, start, end, dewey, stringIdx) => {
+//   dewey = dewey || '';
+//   stringIdx = stringIdx || 0;
+// 	start = start || 0
+// 	end = end || array.length
 
-// picking index in the middle of the start and end indices; if you haven't found the item, recursively search in either left or right half.
-	let index = Math.floor((start + end) / 2)
-	let item = array[index]
-  if (item == value[stringIndex]) {
-    stringIndex++;
-		deweyIndex.concat(item.toString());
-	} else if (item < value) {
-		return binarySearch(array, value, index + 1, end)
-	} else if (item > value) {
-		return binarySearch(array, value, start, index - 1)
-	}
-}
+//   if (dewey.length === value.length) {
+//     return dewey
+//   }
+// 	let index = Math.floor((start + end) / 2)
+// 	let item = array[index]
+//   if (item == value[stringIdx]) {
+//     return deweySearch(array, value, index + 1, end, dewey.concat(item.toString()), stringIdx + 1)
+// 	} else if (item < value) {
+// 		return deweySearch(array, value, index + 1, end, dewey, stringIdx)
+// 	} else if (item > value) {
+// 		return deweySearch(array, value, start, index - 1,  dewey, stringIdx)
+// 	}
+// }
 
-array = [0,1,2,3,4,5,6,7,8,9]
-console.log(binarySearch(array, '338476772109'));
+// let array = [0,1,2,3,4,5,6,7,8,9]
+// console.log(deweySearch(array, '338476772109'));
