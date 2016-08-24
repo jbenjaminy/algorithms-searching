@@ -1,12 +1,8 @@
-
+'use strict'
    /* The share price for a company over a week's trading is as follows:
    [128, 97, 121, 123, 98, 96, 105]. If you had to buy shares in the company on
    one day, and sell the shares on one of the following days, write an algorithm
    to work out what the maximum profit you could make would be. */
-
-/*
-
- */
 
 function sharePrice(array, shares, difference) {
   let lowest;
@@ -35,12 +31,52 @@ function sharePrice(array, shares, difference) {
   }
 }
 
-console.log(sharePrice([128, 97, 121, 123, 98, 20, 195], 10));
+// console.log(sharePrice([128, 97, 121, 123, 98, 20, 195], 10));
 
    /* Imagine that you wanted to find what the highest floor of a 100 story
    building you could drop an egg was, without the egg breaking. But you only
    have two eggs. Write an algorithm to work out which floors you should drop
    the eggs from to find this out in the most efficient way. */
+
+let eggDrop = (array, value, eggs, start, end, attempts) => {
+  value = value || Math.floor((Math.random() * array.length) + 1)
+  start = start || 0
+  end = end || array.length
+  eggs = eggs === undefined ? 2 : eggs
+  attempts = attempts || 0
+
+  attempts++
+
+  if (eggs === 2) {
+    let index = Math.floor((start + end) / 2)
+    let floor = array[index]
+
+    if (floor == value) {
+      return `Floor: ${floor}; Attempts: ${attempts}`
+    } else if (floor < value) {
+      return eggDrop(array, value, eggs, index + 1, end, attempts)
+    } else if (floor > value) {
+      return eggDrop(array, value, eggs - 1, start, index - 1, attempts)
+    }
+  }
+
+  if (start === value) {
+    return `Floor: ${start}; Attempts: ${attempts}`
+  } else if (start < value) {
+    return eggDrop(array, value, eggs, start + 1, end, attempts)
+  }
+    
+}
+
+let testArray = []
+let createArr = (array) => {
+  for (var i = 1; i < 101; i ++) {
+    array.push(i);
+  }
+}
+createArr(testArray)
+
+console.log(eggDrop(testArray))
 
    /* Imagine you are looking for a book in a library with a Dewey Decimal index.
    How would you go about it? Can you express this process as a searching algorithm? */
